@@ -1,13 +1,13 @@
-from flask import Flask, Response, stream_with_context
+from flask import Flask, Response, stream_with_context, render_template
 import time
 import uuid
 import random
 
 APP = Flask(__name__)
 
-@APP.route("/", methods=["GET"])
+@APP.route("/")
 def home():
-    return Response("Welcome to data generator!")
+    return render_template('home.html')
 
 @APP.route("/request_data/<int:rowcount>", methods=["GET"])
 def get_large_request(rowcount):
@@ -25,4 +25,4 @@ def get_large_request(rowcount):
 
 
 if __name__ == "__main__":
-    APP.run(debug=True)
+    APP.run(debug=True, port=8080)
