@@ -5,9 +5,11 @@ import random
 
 APP = Flask(__name__)
 
-@APP.route("/")
+
+@APP.route("/",  methods=["GET"])
 def home():
-    return render_template('home.html')
+    return render_template('index.html')
+
 
 @APP.route("/request_data/<int:rowcount>", methods=["GET"])
 def get_large_request(rowcount):
@@ -15,7 +17,7 @@ def get_large_request(rowcount):
     def f():
         """The generator of mock data"""
         for _i in range(rowcount):
-            time.sleep(.01)
+            time.sleep(.1)
             txid = uuid.uuid4()
             print(txid)
             uid = uuid.uuid4()
